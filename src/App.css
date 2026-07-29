@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding: 5rem 1.5rem 1.5rem;
+  padding: 7rem 1.5rem 1.5rem;
   width: 100%;
   background:
     radial-gradient(ellipse 80% 50% at 10% -10%, rgba(37,99,235,0.22) 0%, transparent 60%),
@@ -50,10 +50,10 @@
 
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .page-shell { padding: 4.5rem 0.75rem 0.75rem; }
+  .page-shell { padding: 10rem 0.75rem 0.75rem; }
   .content-grid { grid-template-columns: 1fr; }
 }
 
 @media (min-width: 1280px) {
-  .page-shell { padding: 1.5rem 3rem 3rem; }
+  .page-shell { padding: 6rem 3rem 3rem; }
 }

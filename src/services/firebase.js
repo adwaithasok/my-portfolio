@@ -15,9 +15,26 @@ export const db = getFirestore(app)
 
 export const submitContactMessage = async ({ name, email, message }) => {
   await addDoc(collection(db, 'contacts'), {
-    name,
-    email,
-    message,
+    // fields for Firestore Trigger Email extension
+    to: 'adwaithdeva@gmail.com',
+    replyTo: email,
+    message: {
+      subject: `Portfolio message from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+      html: `
+        <div style="font-family:sans-serif;max-width:500px;margin:auto;padding:24px;background:#f8fafc;border-radius:12px;">
+          <h2 style="color:#2563eb;margin-bottom:4px;">New Portfolio Message</h2>
+          <hr style="border:none;border-top:1px solid #e2e8f0;margin-bottom:16px;"/>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+          <p><strong>Message:</strong></p>
+          <p style="background:#fff;padding:12px;border-radius:8px;border:1px solid #e2e8f0;">${message}</p>
+        </div>
+      `,
+    },
+    // metadata saved for your records
+    senderName: name,
+    senderEmail: email,
     createdAt: serverTimestamp(),
   })
 }
